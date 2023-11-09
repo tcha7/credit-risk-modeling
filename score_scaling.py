@@ -18,11 +18,13 @@ def ln_pdo_scale(
 
     Let s be the scaled score,
     alpha be the slope parameter,
-    c be the intercept paramter. 
+    c be the intercept paramter.
     The scaling model is then s = alpha · ln(odds) + c,
     where
     alpha = pdo/ln(2)
     c = base_score - alpha*ln(base_odd)
+
+    >> scaled_score = ln_pdo_scale(score, pdo = 20, base_odd = 1, base_score = 500)
     """
 
     _check_input_score(score)
