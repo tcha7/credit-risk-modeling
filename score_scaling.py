@@ -3,7 +3,7 @@ import pandas as pd
 from typing import Union
 
 
-def log_pdo_scale(
+def ln_pdo_scale(
     score: Union[np.ndarray, pd.Series, pd.DataFrame],
     pdo: float = 60,
     base_odd: float = 1,
@@ -15,6 +15,14 @@ def log_pdo_scale(
     PDO = points-to-double-odds = the number of points before the odd doubles
     base_odd and base_score are the pre-defined point. For example, if we want to define
     the score 600 to have odd 1, then we set base_odd = 1, and base_score = 600
+
+    Let s be the scaled score,
+    alpha be the slope parameter,
+    c be the intercept paramter. 
+    The scaling model is then s = alpha · ln(odds) + c,
+    where
+    alpha = pdo/ln(2)
+    c = base_score - alpha*ln(base_odd)
     """
 
     _check_input_score(score)
